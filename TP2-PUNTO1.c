@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-// Listar en pantalla las especies cuyo % de variación es negativo.
+// Listar en pantalla las especies cuyo % de variaciÃ³n es negativo.
 int main()
 {
     FILE *html;
@@ -17,11 +17,11 @@ int main()
     if (html = fopen("SSL-TP2.html","rt"))
     {
         p1 = fopen("p1.csv","w");
-        fprintf(p1, "Especie; Variación\n");
+        fprintf(p1, "Especie; VariaciÃ³n\n");
 
-        while (fgets(buffer,2048,html)) // Lee una línea y guarda en buffer.
+        while (fgets(buffer,2048,html)) // Lee una lÃ­nea y guarda en buffer.
         {
-            if ((pchar = strstr(buffer, "data-order")) && strstr(buffer, "Cdo.</td>")) // Verifica que en la línea existan data order y celda al contado
+            if ((pchar = strstr(buffer, "data-order")) && strstr(buffer, "Cdo.</td>")) 
             {
                 /*Leemos la Especie */
 
@@ -40,7 +40,7 @@ int main()
                 substring = strtok(NULL, "/"); // Cant.Nominal
                 substring = strtok(NULL, "/"); // Ultimo
 
-               /*Escribamos la Variacion y la Epecie*/
+               /*Escribimos la Variacion y la ESpecie*/
 
                 i = 0;
                 substring = strtok(NULL, "/");
