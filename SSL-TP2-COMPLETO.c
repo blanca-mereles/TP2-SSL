@@ -8,10 +8,10 @@ void informeC();
 
 int main()
 {
-    // Presentación de menú en pantalla
+    // PresentaciÃ³n de menÃº en pantalla
 
     int informe;
-    printf("\n Inserte el nro de reporte requerido:\n1) Especies cuyo porcentaje de variación es negativo.\n2) CSV: Especie; Precio de compra; Precio de venta; Apertura; Precio Máximo; Precio Mínimo.\n3) HTML: Informe 1 (En color verde las filas de las especies cuyo precio de compra y precio de venta es menor al precio de apertura)\n\n");
+    printf("\n Inserte el nro de reporte requerido:\n1) Especies cuyo porcentaje de variaciÃ³n es negativo.\n2) CSV: Especie; Precio de compra; Precio de venta; Apertura; Precio MÃ¡ximo; Precio MÃ­nimo.\n3) HTML: Informe 1 (En color verde las filas de las especies cuyo precio de compra y precio de venta es menor al precio de apertura)\n\n");
     scanf("%d", &informe);
 
     if (informe == 1)
@@ -44,7 +44,7 @@ int main()
 }
 
 
-// Listar en pantalla las especies cuyo % de variación es negativo.
+// Listar en pantalla las especies cuyo % de variaciÃ³n es negativo.
 void informeA()
 {
     FILE *html;
@@ -59,9 +59,9 @@ void informeA()
     if (html = popen("wget -q -O - https://bolsar.info/lideres.php --no-check-certificate","r"))
     {
         p1 = fopen("p1.csv","w");
-        fprintf(p1, "Especie; Variación\n");
+        fprintf(p1, "Especie; VariaciÃ³n\n");
 
-        while (fgets(buffer,2048,html)) // Lee una línea y guarda en buffer.
+        while (fgets(buffer,2048,html)) // Lee una lÃ­nea y guarda en buffer.
         {
             if ((pchar = strstr(buffer, "data-order")) && strstr(buffer, "Cdo.</td>"))
             {
@@ -112,7 +112,7 @@ void informeA()
 }
 
 
-// Especie; Precio de compra; Precio de venta; Apertura; Precio Máximo; Precio Mínimo.
+// Especie; Precio de compra; Precio de venta; Apertura; Precio MÃ¡ximo; Precio MÃ­nimo.
 void informeB()
 {
     FILE *html;
@@ -125,11 +125,11 @@ void informeB()
     if (html = popen("wget -q -O - https://bolsar.info/lideres.php --no-check-certificate","r"))
     {
         p2 = fopen("p2.csv","w");
-        fprintf(p2, "Especie;Precio de compra;Precio de venta;Apertura;Precio Mínimo;Precio Máximo\n");
+        fprintf(p2, "Especie;Precio de compra;Precio de venta;Apertura;Precio MÃ­nimo;Precio MÃ¡ximo\n");
 
-        while (fgets(buffer,2048,html)) // Lee una línea y guarda en buffer.
+        while (fgets(buffer,2048,html)) // Lee una lÃ­nea y guarda en buffer.
         {
-            if ((pchar = strstr(buffer, "data-order")) && strstr(buffer, "Cdo.</td>")) // Verifica que en la línea existan data order y celda al contado
+            if ((pchar = strstr(buffer, "data-order")) && strstr(buffer, "Cdo.</td>")) // Verifica que en la lÃ­nea existan data order y celda al contado
             {
                 /*Escribamos el nombre de la Especie */
 
@@ -151,10 +151,10 @@ void informeB()
                     substring++;
                 }
                 while (*substring != '<'){
-                    //fprintf(p2, "%c", *substring);
+                   
                     substring++;
                 }
-                //fprintf(p2, ";");
+               
 
                 /* Escribamos la Cantidad. Nominal */
 
@@ -168,10 +168,10 @@ void informeB()
                     substring++;
                 }
                 while (*substring != '<'){
-                    //fprintf(p2, "%c", *substring);
+                    
                     substring++;
                 }
-                //fprintf(p2, ";");
+            
 
                 /* Compra */
 
@@ -298,9 +298,9 @@ void informeC()
         p3 = fopen("p3.html","w");
         fprintf(p3, "<table>\n<tr>\n<th> Especie </th><th> Variacion </th>\n</tr>\n");
 
-        while (fgets(buffer,2048,html)) // Lee una línea y guarda en buffer.
+        while (fgets(buffer,2048,html)) // Lee una lÃ­nea y guarda en buffer.
         {
-            if ((pchar = strstr(buffer, "data-order")) && strstr(buffer, "Cdo.</td>")) // Verifica que en la línea existan data order y celda al contado
+            if ((pchar = strstr(buffer, "data-order")) && strstr(buffer, "Cdo.</td>")) // Verifica que en la lÃ­nea existan data order y celda al contado
             {
 
                 /*Leemos la Especie */
